@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts */
+@font-face {
+  font-family: "Nohemi";
+  src: url("/fonts/Nohemi.woff2") format("woff2");
+}

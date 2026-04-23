@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block useless pages
+Disallow: /cart
+Disallow: /checkout
+Disallow: /thanks
+Disallow: /wishlist
+
+# Sitemap
+Sitemap: https://www.archive100.shop/sitemap.xml
