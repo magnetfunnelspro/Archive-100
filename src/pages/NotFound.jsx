@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const NotFound = () => {
   useEffect(() => {
@@ -12,6 +13,22 @@ const NotFound = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>Page Not Found | Archive 100</title>
+
+        <meta
+          name="description"
+          content={`This page is not available on our site. Please check url or go back to home.`}
+        />
+
+        <meta property="og:title" content="Page Not Found" />
+        <meta
+          property="og:description"
+          content="This page is not available on our site."
+        />
+        <meta property="og:image" content="/Logo.png" />
+      </Helmet>
+
       {/* Breadcrumb */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/" className="hover:text-purple-600">

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const [form, setForm] = useState({
@@ -68,6 +69,22 @@ ${form.message}
 
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>Contact us | Archive 100</title>
+
+        <meta
+          name="description"
+          content={`Contact us via email or message. We usually reply within 24 hours.`}
+        />
+
+        <meta property="og:title" content="Contact" />
+        <meta
+          property="og:description"
+          content="Contact us via email or message."
+        />
+        <meta property="og:image" content="/Logo.png" />
+      </Helmet>
+
       {/* Breadcrumb */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/" className="hover:text-purple-600">

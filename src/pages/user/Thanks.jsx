@@ -1,9 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Thanks = () => {
   return (
     <div className="w-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>Thanks | Archive 100</title>
+
+        <meta name="description" content="Yahoo! You have order the cloth." />
+
+        <meta property="og:title" content="Thanks" />
+        <meta
+          property="og:description"
+          content="Yahoo! You have order the cloth."
+        />
+        <meta property="og:image" content="/Logo.png" />
+      </Helmet>
+
       {/* Breadcrumb */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/" className="hover:text-purple-600">
@@ -13,6 +27,7 @@ const Thanks = () => {
         <span className="font-semibold">Order Confirmed</span>
       </div>
 
+      {/* Thanks */}
       <div className="px-4 xl:px-16 flex flex-col items-center justify-center text-center gap-6">
         {/* Success Icon */}
         <div className="w-20 h-20 flex items-center justify-center rounded-full bg-purple-50">

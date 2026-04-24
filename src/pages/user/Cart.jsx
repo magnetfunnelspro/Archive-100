@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -79,6 +80,22 @@ const Cart = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>Cart | Archive 100</title>
+
+        <meta
+          name="description"
+          content="Explore the cart and move out to checkout page."
+        />
+
+        <meta property="og:title" content="Cart" />
+        <meta
+          property="og:description"
+          content="Explore the cart and move out to checkout page."
+        />
+        <meta property="og:image" content="/Logo.png" />
+      </Helmet>
+
       {/* Breadcrumbs */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/" className="hover:text-purple-600">
@@ -88,6 +105,7 @@ const Cart = () => {
         <span className="font-semibold">Cart</span>
       </div>
 
+      {/* Cart */}
       <div className="px-4 xl:px-16 grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-16">
         {/* LEFT: CART ITEMS */}
         <div className="lg:col-span-2 flex flex-col gap-4">

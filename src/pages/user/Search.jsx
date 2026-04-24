@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 // Components
 import Card from "../../components/Card";
@@ -29,6 +30,22 @@ const Search = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>Search | Archive 100</title>
+
+        <meta
+          name="description"
+          content="Search a product from our collection."
+        />
+
+        <meta property="og:title" content="Search" />
+        <meta
+          property="og:description"
+          content="Search a product from our collection."
+        />
+        <meta property="og:image" content="/Logo.png" />
+      </Helmet>
+
       {/* Breadcrumb */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/" className="hover:text-purple-600">

@@ -16,6 +16,9 @@ import mainData from "../data/mainData";
 import Card from "../components/Card";
 
 const Home = () => {
+  // Reverse data (latest first)
+  const newArrivals = [...mainData].reverse();
+
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
       {/* Promotional Text */}
@@ -65,9 +68,9 @@ const Home = () => {
           }}
           className="w-full"
         >
-          {mainData.map((data) => (
+          {newArrivals.map((data) => (
             <SwiperSlide>
-              <Link key={data.id} to={`/product/${data.id}`}>
+              <Link key={data.id} to={`/product/${data.slug}`}>
                 <Card data={data} />
               </Link>
             </SwiperSlide>

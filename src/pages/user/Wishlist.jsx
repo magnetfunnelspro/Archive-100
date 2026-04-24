@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 // Components
 import Card from "../../components/Card";
@@ -32,6 +33,22 @@ const Wishlist = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>Wishlist | Archive 100</title>
+
+        <meta
+          name="description"
+          content="Add the product that you loved the most to save the product for future orders."
+        />
+
+        <meta property="og:title" content="Wishlist" />
+        <meta
+          property="og:description"
+          content="Add the product that you loved the most to save the product for future orders."
+        />
+        <meta property="og:image" content="/Logo.png" />
+      </Helmet>
+
       {/* Breadcrumb */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/" className="hover:text-purple-600">

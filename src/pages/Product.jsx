@@ -8,11 +8,11 @@ import { useParams } from "react-router-dom";
 import { Swiper } from "swiper/react";
 import { SwiperSlide } from "swiper/react";
 
-// dATA
+// Data
 import mainData from "../data/mainData";
 
 const Product = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [wishlist, setWishlist] = useState([]);
   const [cart, setCart] = useState([]); // Track cart state for UI updates
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -22,7 +22,9 @@ const Product = () => {
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
 
   // Fetch product from data
-  const product = mainData.find((p) => p.id === id) || mainData[0];
+  const product = mainData.find((p) => p.slug === slug);
+
+  if (!product) return <div>Product not found</div>;
 
   // Load wishlist and cart from localStorage on mount
   useEffect(() => {
@@ -135,6 +137,41 @@ const Product = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>{product.name} | Archive 100</title>
+
+        <meta
+          name="description"
+          content={`Buy ${product.name} at Archive 100. Premium oversized streetwear. Limited stock.`}
+        />
+
+        <meta property="og:title" content={product.name} />
+        <meta property="og:description" content={product.name} />
+        <meta property="og:image" content={product.images[0]} />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name,
+            image: product.images,
+            description: product.description,
+            brand: {
+              "@type": "Brand",
+              name: "Archive 100",
+            },
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "INR",
+              price: product.price,
+              availability: product.inStock
+                ? "https://schema.org/InStock"
+                : "https://schema.org/OutOfStock",
+            },
+          })}
+        </script>
+      </Helmet>
+
       {/* Breadcrumbs */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/" className="hover:text-purple-600">
@@ -148,6 +185,7 @@ const Product = () => {
         <span className="font-semibold">{product.name}</span>
       </div>
 
+      {/* DETAILS */}
       <div className="px-4 xl:px-16 grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-16">
         {/* LEFT: SWIPER GALLERY */}
         <div className="flex flex-col xl:flex-row-reverse gap-2 xl:gap-4">

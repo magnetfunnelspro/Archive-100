@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 // Components
 import Card from "../components/Card";
@@ -47,6 +48,22 @@ const Shop = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>Shop all products | Archive 100</title>
+
+        <meta
+          name="description"
+          content="Shop all products of Archive 100. Premium oversized streetwear. Limited stock."
+        />
+
+        <meta property="og:title" content="Shop" />
+        <meta
+          property="og:description"
+          content="All premium products of Archive 100."
+        />
+        <meta property="og:image" content="/Logo.png" />
+      </Helmet>
+
       {/* Breadcrumb */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/" className="hover:text-purple-600">
@@ -160,13 +177,13 @@ const Shop = () => {
             No products found
           </p>
         ) : (
-          filteredProducts.map((product) => (
+          filteredProducts.map((data) => (
             <Link
-              key={product.id}
-              to={`/product/${product.id}`}
+              key={data.id}
+              to={`/product/${data.slug}`}
               className="group flex flex-col gap-2"
             >
-              <Card data={product} />
+              <Card data={data} />
             </Link>
           ))
         )}

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
@@ -142,12 +143,12 @@ ${cart.map((i) => `• ${i.name} (₹${i.price})`).join("\n")}
       currency: "INR",
       name: "Archive 100",
 
-      image: "/Logo.png", 
+      image: "/Logo.png",
 
       handler: async function () {
         await sendToTelegram();
 
-        localStorage.removeItem("cartData"); 
+        localStorage.removeItem("cartData");
         navigate("/thanks");
       },
 
@@ -183,6 +184,22 @@ ${cart.map((i) => `• ${i.name} (₹${i.price})`).join("\n")}
 
   return (
     <div className="w-full min-h-screen flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>Checkout | Archive 100</title>
+
+        <meta
+          name="description"
+          content="The last step of ordering your new fashion cloth."
+        />
+
+        <meta property="og:title" content="Checkout" />
+        <meta
+          property="og:description"
+          content="The last step of ordering your new fashion cloth."
+        />
+        <meta property="og:image" content="/Logo.png" />
+      </Helmet>
+
       {/* Breadcrumb */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/">Home</Link>
@@ -190,6 +207,7 @@ ${cart.map((i) => `• ${i.name} (₹${i.price})`).join("\n")}
         <span className="font-semibold">Checkout</span>
       </div>
 
+      {/* Checkout */}
       <div className="px-4 xl:px-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* LEFT */}
         <div className="lg:col-span-2 flex flex-col gap-4">

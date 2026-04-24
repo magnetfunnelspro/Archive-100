@@ -1,9 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Policies = () => {
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
+      <Helmet>
+        <title>Privacy Policy | Archive 100</title>
+
+        <meta
+          name="description"
+          content="Read all our privacy policy beforing ordering from us to ensure your privacy."
+        />
+
+        <meta property="og:title" content="Privacy Policy" />
+        <meta
+          property="og:description"
+          content="Read all our privacy policy beforing ordering from us to ensure your privacy."
+        />
+        <meta property="og:image" content="/Logo.png" />
+      </Helmet>
+
       {/* Breadcrumb */}
       <div className="p-4 pb-0 xl:px-16 text-sm text-stone-600">
         <Link to="/" className="hover:text-purple-600">
@@ -15,7 +32,7 @@ const Policies = () => {
 
       {/* Header */}
       <div className="px-4 xl:px-16 flex flex-col gap-2">
-        <h1 className="text-2xl font-semibold">Privacy Policy</h1>
+        <h2 className="text-2xl font-semibold">Privacy Policy</h2>
         <p className="text-sm text-stone-600">
           Your privacy is important to us. This policy explains how we collect
           and use your information.
