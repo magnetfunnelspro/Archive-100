@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
+// Coupons
+import coupons from "../../data/coupons";
+
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [coupon, setCoupon] = useState("");
@@ -51,25 +54,35 @@ const Cart = () => {
   // Subtotal
   const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
 
-  // Coupon Logic (simple but scalable)
   const applyCoupon = () => {
     let discountValue = 0;
 
-    if (coupon.toUpperCase() === "SAVE300") {
-      discountValue = 300;
-    } else if (coupon.toUpperCase() === "SPIRIT400") {
-      discountValue = 400;
-    } else {
+    const foundCoupon = coupons.find(
+      (c) => c.code.toUpperCase() === coupon.toUpperCase(),
+    );
+
+    if (!foundCoupon) {
       setAppliedCoupon("invalid");
+      setDiscount(0);
+
+      const cartData = {
+        items: cart,
+        coupon: "",
+        discount: 0,
+      };
+
+      localStorage.setItem("cartData", JSON.stringify(cartData));
       return;
     }
 
+    discountValue = foundCoupon.discount;
+
     setDiscount(discountValue);
-    setAppliedCoupon(coupon);
+    setAppliedCoupon(foundCoupon.code);
 
     const cartData = {
       items: cart,
-      coupon: coupon,
+      coupon: foundCoupon.code,
       discount: discountValue,
     };
 

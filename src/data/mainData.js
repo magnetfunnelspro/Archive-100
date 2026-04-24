@@ -22,7 +22,7 @@ const mainData = [
 
     // Content
     description:
-      "The 'Unspoken' collection was inspired by the quiet confidence of urban explorers. We wanted to create a piece that speaks for itself without shouting. This design represents the thoughts we keep to ourselves—bold, intricate, and deeply personal.",
+      "Some truths never leave the mouth. They stay trapped in glances, pauses, and things we pretend not to notice. EYES DON'T SPEAK is a piece about unread emotions, false signals, and the tension between what is seen and what is real.",
 
     cat: "Streetwear",
     inStock: true,
