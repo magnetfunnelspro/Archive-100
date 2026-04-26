@@ -24,6 +24,7 @@ import Wishlist from "./pages/user/Wishlist";
 import Thanks from "./pages/user/Thanks";
 
 // Legal Pages
+import FAQs from "./pages/legal/FAQs";
 import Terms from "./pages/legal/Terms";
 import Policies from "./pages/legal/Policies";
 
@@ -52,6 +53,7 @@ const AppRouter = () => {
         <Route path="/thanks" element={<Thanks />} />
 
         {/* Legal Pages */}
+        <Route path="/faqs" element={<FAQs />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Policies />} />
 

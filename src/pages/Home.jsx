@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 // Swiper
 import { Swiper } from "swiper/react";
 import { SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -15,7 +16,6 @@ import mainData from "../data/mainData";
 
 // Components
 import Card from "../components/Card";
-import FAQsItem from "../components/FAQsItem";
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -33,7 +33,13 @@ const Home = () => {
       {/* Promotional Banner */}
       <div className="px-4 xl:px-16">
         <Swiper
+          modules={[Autoplay]}
           loop
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           spaceBetween={16}
           slidesPerView={1}
           breakpoints={{
@@ -117,26 +123,6 @@ const Home = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
-
-      {/* FAQs */}
-      <div className="px-4 xl:px-16 xl:pt-8 flex flex-col gap-4 xl:gap-8">
-        <h2 className="text-2xl xl:text-4xl font-semibold text-center leading-none">
-          FAQs
-        </h2>
-
-        <div className="flex flex-col gap-2">
-          {faqData.map((faq, index) => (
-            <FAQsItem
-              key={index}
-              faq={faq}
-              isOpen={activeIndex === index}
-              onClick={() =>
-                setActiveIndex(activeIndex === index ? null : index)
-              }
-            />
-          ))}
-        </div>
       </div>
     </div>
   );

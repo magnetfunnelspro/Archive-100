@@ -58,9 +58,7 @@ const Footer = () => {
 
         {/* Column 4: Contact Info */}
         <div className="flex flex-col gap-4">
-          <h4 className="font-semibold">
-            Contact
-          </h4>
+          <h4 className="font-semibold">Contact</h4>
           <ul className="flex flex-col gap-4 text-sm">
             <li className="flex items-center gap-2">
               <i className="ri-mail-line text-xl leading-none text-purple-600"></i>
@@ -77,10 +75,21 @@ const Footer = () => {
 
       {/* Bottom Bar: Copyright & Legal */}
       <div className="p-4 px-0 border-t flex flex-col md:flex-row justify-between items-center gap-4 text-stone-600">
-        <p className="text-sm">&copy; {new Date().getFullYear()} Archive 100. All rights reserved.</p>
+        <p className="text-sm">
+          &copy; {new Date().getFullYear()} Archive 100. All rights reserved.
+        </p>
         <div className="text-sm flex gap-4">
-          <Link to="/privacy" className="hover:text-stone-800 transition-colors">
+          <Link
+            to="/privacy"
+            className="hover:text-stone-800 transition-colors"
+          >
             Privacy Policy
+          </Link>
+          <Link
+            to="/faqs"
+            className="hover:text-stone-800 transition-colors"
+          >
+            FAQs
           </Link>
           <Link to="/terms" className="hover:text-stone-800 transition-colors">
             Terms of Service
