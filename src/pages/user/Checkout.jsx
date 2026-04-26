@@ -34,7 +34,7 @@ const Checkout = () => {
 
   // Pricing
   const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-  const shipping = 50;
+  const shipping = subtotal >= 1195 ? 0 : 50;
   const codFee = paymentMethod === "cod" ? 50 : 0;
 
   const total = Math.max(0, subtotal - discount + shipping + codFee);
@@ -303,7 +303,7 @@ ${cart.map((i) => `• ${i.name} (₹${i.price})`).join("\n")}
 
           <div className="flex justify-between text-sm">
             <span>Shipping Cost</span>
-            <span>₹{shipping}</span>
+            <span>{shipping === 0 ? "Free" : `₹${shipping}`}</span>
           </div>
 
           {paymentMethod === "cod" && (

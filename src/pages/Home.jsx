@@ -10,12 +10,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // Data
+import faqData from "../data/faqData";
 import mainData from "../data/mainData";
 
 // Components
 import Card from "../components/Card";
+import FAQsItem from "../components/FAQsItem";
 
 const Home = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
   // Reverse data (latest first)
   const newArrivals = [...mainData].reverse();
 
@@ -23,12 +27,13 @@ const Home = () => {
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
       {/* Promotional Text */}
       <h4 className="p-2.5 px-0 font-semibold text-center text-white bg-purple-600">
-        Free shipping on all order above @ ₹1199
+        Free shipping on all order above @ ₹1195
       </h4>
 
       {/* Promotional Banner */}
       <div className="px-4 xl:px-16">
         <Swiper
+          loop
           spaceBetween={16}
           slidesPerView={1}
           breakpoints={{
@@ -40,7 +45,7 @@ const Home = () => {
           className="w-full"
         >
           <SwiperSlide>
-            <Link to="/shop">
+            <Link to="/product/unspoken-unisex-oversized-printed-tshirt">
               <img
                 loading="lazy"
                 src="/poster/image-1.png"
@@ -49,6 +54,42 @@ const Home = () => {
               ></img>
             </Link>
           </SwiperSlide>
+          <SwiperSlide>
+            <Link to="/product/not-rude-unisex-oversized-printed-tshirt">
+              <img
+                loading="lazy"
+                src="/poster/image-2.png"
+                alt="Promotional Banner"
+                className="w-full aspect-video rounded"
+              ></img>
+            </Link>
+          </SwiperSlide>
+        </Swiper>
+      </div>
+
+      {/* Trending */}
+      <div className="px-4 xl:px-16 xl:pt-8 flex flex-col gap-4 xl:gap-8">
+        <h2 className="text-2xl xl:text-4xl font-semibold leading-none">
+          Trending Now
+        </h2>
+        <Swiper
+          spaceBetween={16}
+          slidesPerView={2}
+          breakpoints={{
+            1280: {
+              slidesPerView: 4,
+              spaceBetween: 32,
+            },
+          }}
+          className="w-full"
+        >
+          {mainData.map((data) => (
+            <SwiperSlide>
+              <Link key={data.id} to={`/product/${data.slug}`}>
+                <Card data={data} />
+              </Link>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
 
@@ -76,6 +117,26 @@ const Home = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+
+      {/* FAQs */}
+      <div className="px-4 xl:px-16 xl:pt-8 flex flex-col gap-4 xl:gap-8">
+        <h2 className="text-2xl xl:text-4xl font-semibold text-center leading-none">
+          FAQs
+        </h2>
+
+        <div className="flex flex-col gap-2">
+          {faqData.map((faq, index) => (
+            <FAQsItem
+              key={index}
+              faq={faq}
+              isOpen={activeIndex === index}
+              onClick={() =>
+                setActiveIndex(activeIndex === index ? null : index)
+              }
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
