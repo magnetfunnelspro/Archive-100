@@ -3,7 +3,7 @@ const mainData = [
     id: "a-001",
     name: "Unspoken Unisex Oversized Printed T-shirt",
     slug: "unspoken-unisex-oversized-printed-tshirt",
-    price: 1095,
+    price: 795,
     originalPrice: 1695,
 
     // Main image
@@ -31,7 +31,7 @@ const mainData = [
     id: "a-002",
     name: "Not Rude Unisex Oversized Printed T-shirt",
     slug: "not-rude-unisex-oversized-printed-tshirt",
-    price: 995,
+    price: 695,
     originalPrice: 1655,
 
     // Main image
@@ -50,7 +50,7 @@ const mainData = [
 
     // Content
     description:
-      "Some responses don't need words—they show up in silence and distance. NOT RUDE. JUST NOT INTERESTED. is about choosing boundaries over explanations, recognizing what doesn't match your energy, and stepping back without guilt—because not everything deserves your attention.",
+      "Some responses don't need words—they show up in silence and distance. NOT RUDE JUST NOT INTERESTED, is about choosing boundaries over explanations, recognizing what doesn't match your energy, and stepping back without guilt—because not everything deserves your attention.",
 
     cat: "Streetwear",
     inStock: true,
