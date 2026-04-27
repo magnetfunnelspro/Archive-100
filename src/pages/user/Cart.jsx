@@ -206,7 +206,7 @@ const Cart = () => {
               </div>
 
               {appliedCoupon === "invalid" && (
-                <p className="text-xs text-red-500">Invalid coupon</p>
+                <p className="text-xs text-red-600">Invalid coupon or expired</p>
               )}
 
               {appliedCoupon && appliedCoupon !== "invalid" && (
