@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 
@@ -23,9 +24,7 @@ const Product = () => {
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
 
   // Fetch product from data
-  const product = mainData.find((p) => p.slug === slug);
-
-  if (!product) return <div>Product not found</div>;
+  const product = mainData.find((p) => p.slug === slug) || null;
 
   // Load wishlist and cart from localStorage on mount
   useEffect(() => {
@@ -37,9 +36,11 @@ const Product = () => {
   }, []);
 
   // Discount calculator
-  const discount = Math.round(
-    ((product.originalPrice - product.price) / product.originalPrice) * 100,
-  );
+  const discount = product
+    ? Math.round(
+        ((product.originalPrice - product.price) / product.originalPrice) * 100,
+      )
+    : 0;
 
   // Expected Shipping
   const expectedShipping = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
@@ -136,41 +137,48 @@ const Product = () => {
     (item) => item.id === product.id && item.size === selectedSize,
   );
 
+  if (!product) return <Navigate to="/not-found" />;
+
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
       <Helmet>
-        <title>{product.name} | Archive 100</title>
+        <title>{product ? `${product.name} | Archive 100` : "Product"}</title>
 
-        <meta
-          name="description"
-          content={`Buy ${product.name} at Archive 100. Premium oversized streetwear. Limited stock.`}
-        />
+        {product && (
+          <>
+            <meta
+              name="description"
+              content={`Buy ${product.name} at Archive 100. Premium oversized streetwear. Limited stock.`}
+            />
 
-        <meta property="og:title" content={product.name} />
-        <meta property="og:description" content={product.name} />
-        <meta property="og:image" content={product.images[0]} />
+            <meta property="og:title" content={product.name} />
+            <meta property="og:description" content={product.name} />
+            <meta property="og:image" content={product.images[0]} />
 
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: product.name,
-            image: product.images,
-            description: product.description,
-            brand: {
-              "@type": "Brand",
-              name: "Archive 100",
-            },
-            offers: {
-              "@type": "Offer",
-              priceCurrency: "INR",
-              price: product.price,
-              availability: product.inStock
-                ? "https://schema.org/InStock"
-                : "https://schema.org/OutOfStock",
-            },
-          })}
-        </script>
+            <script
+              type="application/ld+json"
+              children={JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Product",
+                name: product.name,
+                image: product.images,
+                description: product.description,
+                brand: {
+                  "@type": "Brand",
+                  name: "Archive 100",
+                },
+                offers: {
+                  "@type": "Offer",
+                  priceCurrency: "INR",
+                  price: product.price,
+                  availability: product.inStock
+                    ? "https://schema.org/InStock"
+                    : "https://schema.org/OutOfStock",
+                },
+              })}
+            />
+          </>
+        )}
       </Helmet>
 
       {/* Breadcrumbs */}
@@ -394,7 +402,7 @@ const Product = () => {
                 className="p-2.5 px-4 rounded font-semibold flex gap-2 text-white bg-purple-600"
                 download
               >
-                <i class="ri-download-line"></i>
+                <i className="ri-download-line"></i>
                 <span>Size Guide</span>
               </a>
             </div>

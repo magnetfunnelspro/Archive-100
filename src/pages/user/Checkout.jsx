@@ -84,7 +84,9 @@ ${form.address}
 ${form.city}, ${form.state} - ${form.pincode}
 
 🧾 Items:
-${cart.map((i) => `• ${i.name} (₹${i.price})`).join("\n")}
+${cart
+  .map((i) => `• ${i.name} - Size: ${i.size} (₹${i.price})`)
+  .join("\n")}
 
 💰 Subtotal: ₹${subtotal}
 🏷 Coupon: ${coupon || "None"}

@@ -63,7 +63,7 @@ const NotFound = () => {
           </Link>
 
           <Link
-            to="/"
+            to="/shop"
             className="w-full p-4 rounded font-semibold border-2 border-r-4 border-b-4 border-purple-600 text-purple-600 bg-white text-center"
           >
             Continute Shopping
