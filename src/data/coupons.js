@@ -1,6 +1,5 @@
 const coupons = [
-    // {code: "SURAJ400", discount: 400},
-    // {code: "SPIRIT400", discount: 400},
+    {code: "AMAN50", discount: 50},
 ];
 
 export default coupons;
