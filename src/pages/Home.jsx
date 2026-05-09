@@ -54,17 +54,29 @@ const Home = () => {
             <Link to="/product/unspoken-unisex-oversized-printed-tshirt">
               <img
                 loading="lazy"
-                src="/poster/image-1.png"
+                src="/poster/image-1.webp"
                 alt="Promotional Banner"
                 className="w-full aspect-video rounded"
               ></img>
             </Link>
           </SwiperSlide>
+
           <SwiperSlide>
             <Link to="/product/not-rude-unisex-oversized-printed-tshirt">
               <img
                 loading="lazy"
-                src="/poster/image-2.png"
+                src="/poster/image-2.webp"
+                alt="Promotional Banner"
+                className="w-full aspect-video rounded"
+              ></img>
+            </Link>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <Link to="/product/ryujinnnn-unisex-oversized-printed-tshirt">
+              <img
+                loading="lazy"
+                src="/poster/image-3.webp"
                 alt="Promotional Banner"
                 className="w-full aspect-video rounded"
               ></img>
