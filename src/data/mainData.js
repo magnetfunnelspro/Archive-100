@@ -64,7 +64,7 @@ const mainData = [
     id: "a-003",
     name: "Ryujinnnn Unisex Oversized Printed T-shirt",
     slug: "ryujinnnn-unisex-oversized-printed-tshirt",
-    price: 755,
+    price: 745,
     originalPrice: 1455,
 
     // Main image
@@ -84,6 +84,36 @@ const mainData = [
     // Content
     description:
       "Some forces are too powerful to be controlled. They sleep quietly within, hidden beneath scars, silence, and survival. RYUJIN is a piece about awakening the fire inside — the chaos, strength, and spirit that rise when fear no longer holds you back.",
+
+    cat: "Streetwear",
+    inStock: true,
+  },
+
+  // Dream
+  {
+    id: "a-004",
+    name: "Dream Unisex Oversized Printed T-shirt",
+    slug: "dream-unisex-oversized-printed-tshirt",
+    price: 695,
+    originalPrice: 1255,
+
+    // Main image
+    image: "/images/dream/image-1.webp",
+    images: [
+      "/images/dream/image-1.webp",
+      "/images/dream/image-2.webp",
+      "/images/dream/image-3.webp",
+      "/images/dream/image-4.webp",
+    ],
+
+    // Specifications
+    material: "100% Super Combed Cotton",
+    gsm: "240 GSM",
+    fit: "Oversized Fit",
+
+    // Content
+    description:
+      "SDreams are not meant to stay asleep. Hidden beyond fear and doubt, they wait for the moment you choose to rise, spread your wings, and chase the impossible.",
 
     cat: "Streetwear",
     inStock: true,
