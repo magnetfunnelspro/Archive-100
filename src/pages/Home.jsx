@@ -20,6 +20,49 @@ import Card from "../components/Card";
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
+  // Bestsellers
+  const bestsellers = [
+    // Unspoken
+    {
+      name: "Unspoken Unisex Oversized Printed T-shirt",
+      slug: "unspoken-unisex-oversized-printed-tshirt",
+      price: 795,
+      originalPrice: 1695,
+      image: "/images/unspoken/image-1.webp",
+      inStock: true,
+    },
+
+    // Ryujinnnn
+    {
+      name: "Ryujinnnn Unisex Oversized Printed T-shirt",
+      slug: "ryujinnnn-unisex-oversized-printed-tshirt",
+      price: 745,
+      originalPrice: 1455,
+      image: "/images/ryujinnnn/image-1.webp",
+      inStock: true,
+    },
+
+    // Not Rude
+    {
+      name: "Not Rude Unisex Oversized Printed T-shirt",
+      slug: "not-rude-unisex-oversized-printed-tshirt",
+      price: 695,
+      originalPrice: 1655,
+      image: "/images/not-rude/image-1.webp",
+      inStock: true,
+    },
+
+    // Dream
+    {
+      name: "Dream Unisex Oversized Printed T-shirt",
+      slug: "dream-unisex-oversized-printed-tshirt",
+      price: 695,
+      originalPrice: 1255,
+      image: "/images/dream/image-1.webp",
+      inStock: true,
+    },
+  ];
+
   // Reverse data (latest first)
   const newArrivals = [...mainData].reverse();
 
@@ -101,9 +144,9 @@ const Home = () => {
           }}
           className="w-full"
         >
-          {mainData.map((data) => (
+          {bestsellers.map((data, index) => (
             <SwiperSlide>
-              <Link key={data.id} to={`/product/${data.slug}`}>
+              <Link key={index} to={`/product/${data.slug}`}>
                 <Card data={data} />
               </Link>
             </SwiperSlide>
