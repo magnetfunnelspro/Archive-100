@@ -91,6 +91,17 @@ const Cart = () => {
 
   const total = subtotal - discount;
 
+  // Meta Pixel
+  useEffect(() => {
+    if (cart.length > 0) {
+      fbq("track", "InitiateCheckout", {
+        num_items: cart.length,
+        value: total,
+        currency: "INR",
+      });
+    }
+  }, []);
+
   return (
     <div className="w-full h-full flex flex-col gap-8 text-stone-800 bg-white font-['Space_Grotesk']">
       <Helmet>
@@ -206,7 +217,9 @@ const Cart = () => {
               </div>
 
               {appliedCoupon === "invalid" && (
-                <p className="text-xs text-red-600">Invalid coupon or expired</p>
+                <p className="text-xs text-red-600">
+                  Invalid coupon or expired
+                </p>
               )}
 
               {appliedCoupon && appliedCoupon !== "invalid" && (

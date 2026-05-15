@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -29,6 +30,41 @@ import Terms from "./pages/legal/Terms";
 import Policies from "./pages/legal/Policies";
 
 const AppRouter = () => {
+
+  // Meta Pixel
+  useEffect(() => {
+    !(function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod
+          ? n.callMethod.apply(n, arguments)
+          : n.queue.push(arguments);
+      };
+
+      if (!f._fbq) f._fbq = n;
+
+      n.push = n;
+      n.loaded = true;
+      n.version = "2.0";
+      n.queue = [];
+
+      t = b.createElement(e);
+      t.async = true;
+      t.src = v;
+
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    })(
+      window,
+      document,
+      "script",
+      "https://connect.facebook.net/en_US/fbevents.js",
+    );
+
+    fbq("init", "1991052645620698");
+    fbq("track", "PageView");
+  }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />

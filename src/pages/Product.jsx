@@ -26,6 +26,19 @@ const Product = () => {
   // Fetch product from data
   const product = mainData.find((p) => p.slug === slug) || null;
 
+  // Meta Pixel
+  useEffect(() => {
+    if (!product) return;
+
+    fbq("track", "ViewContent", {
+      content_ids: [product.id],
+      content_name: product.name,
+      content_type: "product",
+      value: product.price,
+      currency: "INR",
+    });
+  }, [product]);
+
   // Load wishlist and cart from localStorage on mount
   useEffect(() => {
     const savedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
@@ -85,6 +98,15 @@ const Product = () => {
     localStorage.setItem("cartData", JSON.stringify(updatedData));
 
     setCart(currentCart);
+
+    fbq("track", "AddToCart", {
+      content_ids: [product.id],
+      content_name: product.name,
+      content_type: "product",
+      value: product.price,
+      currency: "INR",
+    });
+
     setIsCartOpen(true);
   };
 
@@ -129,6 +151,14 @@ const Product = () => {
 
     setWishlist(updatedWishlist);
     localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+
+    fbq("track", "AddToWishlist", {
+      content_ids: [product.id],
+      content_name: product.name,
+      content_type: "product",
+      value: product.price,
+      currency: "INR",
+    });
   };
 
   // Derived states to determine UI conditions

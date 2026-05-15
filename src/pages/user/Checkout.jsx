@@ -39,6 +39,15 @@ const Checkout = () => {
 
   const total = Math.max(0, subtotal - discount + shipping + codFee);
 
+  useEffect(() => {
+    if (paymentMethod) {
+      fbq("track", "AddPaymentInfo", {
+        value: total,
+        currency: "INR",
+      });
+    }
+  }, [paymentMethod]);
+
   // Handle form
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -84,9 +93,7 @@ ${form.address}
 ${form.city}, ${form.state} - ${form.pincode}
 
 🧾 Items:
-${cart
-  .map((i) => `• ${i.name} - Size: ${i.size} (₹${i.price})`)
-  .join("\n")}
+${cart.map((i) => `• ${i.name} - Size: ${i.size} (₹${i.price})`).join("\n")}
 
 💰 Subtotal: ₹${subtotal}
 🏷 Coupon: ${coupon || "None"}
@@ -148,6 +155,13 @@ ${cart
       image: "/Logo.png",
 
       handler: async function () {
+        fbq("track", "Purchase", {
+          content_ids: cart.map((item) => item.id),
+          content_type: "product",
+          value: total,
+          currency: "INR",
+        });
+
         await sendToTelegram();
 
         localStorage.removeItem("cartData");
@@ -176,9 +190,18 @@ ${cart
     if (paymentMethod === "razorpay") {
       handleRazorpay();
     } else {
+      fbq("track", "Purchase", {
+        content_ids: cart.map((item) => item.id),
+        content_type: "product",
+        value: total,
+        currency: "INR",
+      });
+
       await sendToTelegram();
+
       localStorage.removeItem("cart");
       localStorage.removeItem("cartData");
+      
       navigate("/thanks");
       localStorage.removeItem("cartData");
     }
